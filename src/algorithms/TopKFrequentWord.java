@@ -23,6 +23,7 @@ class Solution {
 		for (int i = 0; i < k; i++) {
 			topK.add(candidates.get(i));
 		}
+		Integer integer;
 		return topK;
 	}
 }

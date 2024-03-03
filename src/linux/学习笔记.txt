@@ -1,0 +1,43 @@
+1.shell 是解释语言
+
+#!/bin/bash 定义解释器 ./xx.sh时生效
+/bin/bansh时 文件内定义的解释器无效。
+
+2.运维为什么要会shell
+有些服务有成千上万机器， 所以需要shell编程， 这样能自动化来运维。包括安装， 日志采集，日志分析
+
+3.命令的参数和选项
+
+4. lesson_a_11
+echo $$ 显示进程。
+
+source xxx.sh 在当前进程执行。(缩写. ./xxx.sh)
+sh xxx.sh 新开进程执行。
+
+5.单引号和双引号
+abc=hell0
+echo 'single quote ${abc}'
+echo 'double quote ${abc}'
+
+#只读变量
+myUrl="http://c.biancheng.net/shell/"
+readonly myUrl
+myUrl="http://c.biancheng.net/shell/"
+
+myUrl="http://c.biancheng.net/shell/"
+unset myUrl
+echo $myUrl
+
+6.
+再谈反引号和 $()
+
+$（） 可以嵌套， ``不行。 ``在多种shell中可以用， $()只在 bash中。
+
+7.特殊符号
+
+$0 脚本名
+$n参数名
+$# 参数个数
+$*所有参数
+$?状态
+$$进程id
