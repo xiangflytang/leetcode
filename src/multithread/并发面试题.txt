@@ -1,0 +1,89 @@
+https://github.com/xiangflytang/JCIPSrc jcip可以执行的代码。
+
+synchronized
+多线程之间访问资源的同步性。可以保证方法或代码块任意时刻只有一个线程执行。
+synchronized 可重入
+对象头，包含了锁的信息。
+* 32 bits存储对象的hashCode或者锁的信息
+* 25 bits存储对象的identity hash code
+* 4 bits存储对象的分代年龄
+* 1 bit用于标识对象是否被锁定
+* 2 bits未使用（JVM实现可以根据需要自行使用）
+通过一个锁，如果已经拥有锁则在使用计数上面+1
+如果其他线程已经占用，则该线程进入阻塞状态。
+
+
+synchronized 几种用法
+1.实例方法上的synchronized
+```java
+public class SynchronizedExample {
+    private int count = 0;
+
+    public synchronized void increment() {
+        count++;
+    }
+
+    public synchronized int getCount() {
+        return count;
+    }
+}
+```
+
+2.静态方法上的synchronized
+```java
+public class SynchronizedExample {
+    private static int count = 0;
+
+    public static synchronized void increment() {
+        count++;
+    }
+
+    public static synchronized int getCount() {
+        return count;
+    }
+}
+```
+
+3.代码块上的synchronized
+```java
+public class SynchronizedExample {
+    private final Object lock = new Object();
+    private int count = 0;
+
+    public void increment() {
+        synchronized (lock) {
+            count++;
+        }
+    }
+
+    public int getCount() {
+        synchronized (lock) {
+            return count;
+        }
+    }
+}
+```
+
+4.什么是线程安全，vector是否线程安全。
+线程安全（Thread Safety）是指在多线程环境中，程序或系统能够正确地处理多个线程同时访问共享资源的情况，保证操作的正确性，而不会导致不确定的结果或不一致的状态。
+多线程环境中，程序或者系统能够正确处理多个线程1.同时访问共享资源，2.保证操作的正确性3.而不会导致不确定的结果或不一致的状态。
+vetctor 是同步容器，每个方法上面加了sychronized的迭代会产生问题fail-fast
+5.volatile 关键字的作用？
+两层意思：
+1.保证了可见性。
+2.禁止进行指令重排。
+volatile和synchronized的区别。
+v修饰便令。s修饰实例方法，类方法，代码块。
+v不会阻塞，s会阻塞
+v可以修改可见性，不能保证原子性。
+5.1常用线程池
+5.2简述你对线程池的理解
+5.3java程序是如何执行的。
+
+6.锁优化。
+https://zhuanlan.zhihu.com/p/395805042
+尚硅谷jvm全套教程。
+https://www.bilibili.com/video/BV1PJ411n7xZ/?vd_source=1346640d01f6d481377f1276fad371cc
+7.产生死锁的四个必要条件
+8.如何避免死锁。
+
