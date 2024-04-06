@@ -15,18 +15,21 @@ source xxx.sh 在当前进程执行。(缩写. ./xxx.sh)
 sh xxx.sh 新开进程执行。
 
 5.单引号和双引号
+单引号原样输出， 不会替换变量中的值。
+双引号会替换， 变量中的值。
 abc=hell0
 echo 'single quote ${abc}'
-echo 'double quote ${abc}'
+echo "double quote ${abc}"
 
 #只读变量
+不能再修改
 myUrl="http://c.biancheng.net/shell/"
 readonly myUrl
 myUrl="http://c.biancheng.net/shell/"
 
-myUrl="http://c.biancheng.net/shell/"
-unset myUrl
-echo $myUrl
+myUrl1="http://c.biancheng.net/shell/"
+unset myUrl1
+echo $myUrl1
 
 6.
 再谈反引号和 $()
@@ -38,6 +41,14 @@ $（） 可以嵌套， ``不行。 ``在多种shell中可以用， $()只在 ba
 $0 脚本名
 $n参数名
 $# 参数个数
-$*所有参数
+$@所有参数
 $?状态
 $$进程id
+
+# 双括号用于计算
+```
+begin_time=`date +%s`
+sleep 5s
+finish_time=$(date +%s)
+run_time=$((finish_time - begin_time))
+```
